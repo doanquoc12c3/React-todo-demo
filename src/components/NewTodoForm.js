@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 
+
 function NewTodoForm(props){
 
+ 
     const [description, setDescription] = useState('');
     const [assigned, setAssigned] = useState('');
     const descriptionChange = (event)=>{
@@ -15,32 +17,37 @@ function NewTodoForm(props){
     }
 
     const submitNewTodo = () =>{
+       
         props.addTodo(description,assigned)
-        // setAssigned('');
-        // setDescription('');
+        setAssigned('');
+        setDescription('');
     }
     return (
+        <form>
         <div className='mt-5'>
-            <form>
-                <div className='mb-3'>
-                    <label className='form-label'>Assigned</label>
-                    <input type='text' 
-                        className='form-label' 
-                        required
-                        onChange={assignedChange}
-                        value={assigned}
-                    ></input>
-                </div>
-                <div className='mb-3'>
-                    <label className='form-label'>Description</label>
-                    <textarea className='form-control'
-                        row={3} required
-                        onChange={descriptionChange}
-                        value={description}></textarea>
-                </div>
-                <button type='button' className='btn btn-primary mt-3' onClick={submitNewTodo}> Add To Do</button>
-            </form>
+            
+            
+            <div className='mb-3'>
+        <label className='form-label'>Assigned</label>
+        <input type='text' 
+            className='form-label' 
+            required
+            onChange={assignedChange}
+            value={assigned}
+        ></input>
         </div>
+        <div className='mb-3'>
+        <label className='form-label'>Description</label>
+        <textarea className='form-control'
+            row={3} required
+            onChange={descriptionChange}
+            value={description}></textarea>
+        </div>
+        <button onClick={submitNewTodo} className='btn btn-primary mt-3'>Add</button>
+                
+            
+        </div>
+        </form>
     )
 }
 

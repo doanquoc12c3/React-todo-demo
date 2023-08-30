@@ -4,6 +4,7 @@ import TodoTable from './components/TodoTable';
 import NewTodoForm from './components/NewTodoForm';
 
 function App() {
+  const [showTodoForm, setShowTodoForm] = useState(false);
   const[todos, setTodos] = useState( [
     {rowNumber:1, rowDescription: 'Feed puppy', rowAssigned: 'User one'},
     {rowNumber:2, rowDescription: 'Make plants', rowAssigned: 'User two'},
@@ -22,7 +23,8 @@ function App() {
         rowDescription: description,
         rowAssigned: assigned
       };
-      setTodos(todos => [...todos, newTodo]);
+      let newTodos = todos => [...todos, newTodo];
+      setTodos(newTodos);
       
     
   };
@@ -32,6 +34,8 @@ function App() {
         return ele.rowNumber !== deleteTodoRowNumber
       }) ) 
   }
+  
+  
 
   return (
     <div className='mt-5 container'>
@@ -41,9 +45,11 @@ function App() {
       </div>
       <div>
             <TodoTable todos={todos} deleteTodo={deleteTodo} />
+            <button type='button' className='btn btn-primary mt-3' onClick={()=>setShowTodoForm(!showTodoForm)}>
+              {showTodoForm?"Close":"Add To Do"}
+            </button>
+            {showTodoForm && <NewTodoForm addTodo={addTodo}/>}
             
-          
-            <NewTodoForm addTodo={addTodo}/>
 
       </div>
       </div>
