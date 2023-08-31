@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 
 
-function NewTodoForm(props){
+function NewTodoForm(props:{addTodo:Function}){
 
  
     const [description, setDescription] = useState('');
     const [assigned, setAssigned] = useState('');
-    const descriptionChange = (event)=>{
+    const descriptionChange = (event:any)=>{
     
         setDescription(event.target.value);
     }
 
-    const assignedChange = (event) =>{
+    const assignedChange = (event:any) =>{
     
         setAssigned(event.target.value);
     }
@@ -39,7 +39,7 @@ function NewTodoForm(props){
         <div className='mb-3'>
         <label className='form-label'>Description</label>
         <textarea className='form-control'
-            row={3} required
+            rows={3} required
             onChange={descriptionChange}
             value={description}></textarea>
         </div>
